@@ -11,20 +11,20 @@ public class Person {
     private int birthYear;
     private Calendar calendar;
 //constructors
-    public Person(){
-        this.setName("");
-        this.setBirthYear(0);
-        this.calendar = null;
-    }
+public Person(){
+    this.setName("");
+    this.setBirthYear(0);
+    this.calendar = null;
+}
     public Person(String name, int birthYear){
         this.setName(name);
         this.setBirthYear(birthYear);
         this.calendar = new GregorianCalendar();
     }
 //getters and setters
-    public String getName(){
-        return this.name;
-    }
+public String getName(){
+    return this.name;
+}
     public int getBirthYear(){
         return this.birthYear;
     }
@@ -35,9 +35,9 @@ public class Person {
         this.birthYear = birthYear;
     }
 //other methods
-    public int age(){
-        return this.calendar.get(Calendar.YEAR) - this.birthYear;
-    }
+public int age(){
+    return this.calendar.get(Calendar.YEAR) - this.birthYear;
+}
     public void input(String name, int birthYear){
         this.setName(name);
         this.setBirthYear(birthYear);
@@ -45,7 +45,7 @@ public class Person {
     }
     public void output(){
         System.out.println("Person's name: " + this.name + ". Year of birthday: " + this.birthYear +
-        ". Age: " + this.age());
+                ". Age: " + this.age());
     }
     public void changeName(String name){
         this.setName(name);

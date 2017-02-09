@@ -27,6 +27,8 @@ public String getName(){
     public int getRating(){
         return this.rating;
     }
+    public int getTotalRating() { return Student.totalRating;}
+    public int getAvgRating() { return Student.avgRating;}
     public void setName(String name){
         this.name = name;
     }
@@ -47,22 +49,22 @@ public boolean betterStudent(Student student){
     }
     @Override
     public String toString(){
-        return ("Name is " + this.name + "; raiting: " + this.rating);
+        return ("Name is " + this.name + "; rating: " + this.rating);
     }
 
     public static void main(String[] args) {
         Student student1 = new Student("Vasia", 50);
         Student student2 = new Student("Petia", 70);
         Student student3 = new Student("Vova", 90);
-        System.out.println("Total raiting: " + Student.totalRating);
-        System.out.println("Average raiting: " + Student.avgRating);
+        System.out.println("Total raiting: " + student1.getTotalRating());
+        System.out.println("Average raiting: " + student1.getAvgRating());
         System.out.println(student1);
         System.out.println(student2);
         System.out.println(student3);
-        System.out.println(student1.name + " was better then " +
-                student2.name + ": " + student1.betterStudent(student2));
+        System.out.println(student1.getName() + " was better then " +
+                student2.getName() + ": " + student1.betterStudent(student2));
         student1.changeRating(80);
-        System.out.println(student1.name + " is better then " +
-                student2.name + " in this year: " + student1.betterStudent(student2));
+        System.out.println(student1.getName() + " is better then " +
+                student2.getName() + " in this year: " + student1.betterStudent(student2));
     }
 }

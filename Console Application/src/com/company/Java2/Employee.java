@@ -8,11 +8,11 @@ public class Employee {
     private int rate, hours;
     private static int totalHours = 0;
 //constructors
-    public Employee(){
-        this.setName("");
-        this.setRate(0);
-        this.setHours(0);
-    }
+public Employee(){
+    this.setName("");
+    this.setRate(0);
+    this.setHours(0);
+}
     public Employee(String name, int rate){
         this.setName(name);
         this.setRate(rate);
@@ -24,9 +24,9 @@ public class Employee {
         this.setHours(hours);
     }
 //getters and setters
-    public String getName(){
-        return this.name;
-    }
+public String getName(){
+    return this.name;
+}
     public int getRate(){
         return this.rate;
     }
@@ -48,9 +48,9 @@ public class Employee {
         Employee.totalHours += hours;
     }
 //other methods
-    public int salary(){
-        return this.rate * this.hours;
-    }
+public int salary(){
+    return this.rate * this.hours;
+}
     public void changeRate(int rate){
         this.rate = rate;
     }
@@ -70,6 +70,6 @@ public class Employee {
         System.out.println(employee1);
         System.out.println(employee2);
         System.out.println(employee3);
-        System.out.println("Total hours of all workers are: " + Employee.totalHours);
+        System.out.println("Total hours of all workers are: " + employee1.getTotalHours());
     }
 }
