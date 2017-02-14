@@ -11,43 +11,46 @@ public class Person {
     private int birthYear;
     private Calendar calendar;
 //constructors
-public Person(){
-    this.setName("");
-    this.setBirthYear(0);
-    this.calendar = null;
+public Person() {
+    setName("");
+    setBirthYear(0);
+    calendar = null;
 }
-    public Person(String name, int birthYear){
-        this.setName(name);
-        this.setBirthYear(birthYear);
-        this.calendar = new GregorianCalendar();
+    public Person(String name, int birthYear) throws ArithmeticException {
+        setName(name);
+        setBirthYear(birthYear);
+        calendar = new GregorianCalendar();
     }
 //getters and setters
-public String getName(){
-    return this.name;
-}
-    public int getBirthYear(){
-        return this.birthYear;
+
+    public String getName() {
+        return name;
     }
-    public void setName(String name){
+    public int getBirthYear() {
+        return birthYear;
+    }
+    public void setName(String name) {
         this.name = name;
     }
-    public void setBirthYear(int birthYear){
+    public void setBirthYear(int birthYear) throws ArithmeticException {
+        if (birthYear < 0) throw new ArithmeticException("Year of birth has to be more than zero!");
         this.birthYear = birthYear;
     }
 //other methods
-public int age(){
-    return this.calendar.get(Calendar.YEAR) - this.birthYear;
-}
-    public void input(String name, int birthYear){
+
+    public int age() {
+        return calendar.get(Calendar.YEAR) - birthYear;
+    }
+    public void input(String name, int birthYear) throws ArithmeticException {
         this.setName(name);
         this.setBirthYear(birthYear);
         this.calendar = new GregorianCalendar();
     }
-    public void output(){
-        System.out.println("Person's name: " + this.name + ". Year of birthday: " + this.birthYear +
-                ". Age: " + this.age());
+    public void output() {
+        System.out.println("Person's name: " + name + ". Year of birthday: " + birthYear +
+                ". Age: " + age());
     }
-    public void changeName(String name){
+    public void changeName(String name) {
         this.setName(name);
     }
 
@@ -57,11 +60,16 @@ public int age(){
         Person person3 = new Person();
         Person person4 = new Person();
         Person person5 = new Person();
-        person1.input("Ivan", 1950);
-        person2.input("Petro", 1960);
-        person3.input("Danylo", 1970);
-        person4.input("Stepan", 1980);
-        person5.input("Mykola", 1990);
+        try {
+            person1.input("Ivan", 1950);
+            person2.input("Petro", 1960);
+            person3.input("Danylo", 1970);
+            person4.input("Stepan", 1980);
+            person5.input("Mykola", 1990);
+        } catch (ArithmeticException e) {
+            e.printStackTrace();
+            System.err.println(e.getMessage() + "\n");
+        }
         person1.output();
         person2.output();
         person3.output();

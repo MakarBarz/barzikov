@@ -18,10 +18,10 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, int salary, DepartmentName departmentName) {
-        this.name = name;
-        this.salary = salary;
-        this.departmentName = departmentName;
+    public Employee(String name, int salary, DepartmentName departmentName) throws ArithmeticException {
+        setName(name);
+        setSalary(salary);
+        setDepartmentName(departmentName);
     }
 
     //getters & setters
@@ -38,7 +38,8 @@ public class Employee {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(int salary) throws ArithmeticException {
+        if (salary < 0) throw new ArithmeticException("Salary has to be more than zero!");
         this.salary = salary;
     }
 
@@ -52,9 +53,9 @@ public class Employee {
 
     //other methods
 
-    public static String cont(String country){
+    public static String cont(String country) {
         Continent continent;
-        switch (country){
+        switch (country) {
             case "Ukraine":case "Poland":case "England":case "France":
                 continent = Continent.EUROPE; break;
             case "China":case "Japane":case "Korea":case "India":
@@ -75,21 +76,24 @@ public class Employee {
         }
         return continent.name();
     }
-    public static int biggest(int[] array){
+    public static int biggest(int[] array) throws ArithmeticException {
+        if (array.length == 0) throw new ArithmeticException("Array is empty!");
         int max = array[0];
         for (int i = 1; i < array.length; i++) {
             if (array[i] > max) max = array[i];
         }
         return max;
     }
-    public static int sumPoz(int[] array){
+    public static int sumPoz(int[] array) throws ArithmeticException {
+        if (array.length == 0) throw new ArithmeticException("Array is empty!");
         int sum = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] > 0) sum += array[i];
         }
         return sum;
     }
-    public static void amountPozNeg(int[] array){
+    public static void amountPozNeg(int[] array) throws ArithmeticException {
+        if (array.length == 0) throw new ArithmeticException("Array is empty!");
         int amountPoz = 0;
         int amountNeg = 0;
         for (int i = 0; i < array.length; i++) {
@@ -104,7 +108,8 @@ public class Employee {
         System.out.println("The amount of negative values is " + amountNeg);
         System.out.println("The amount of positive values is " + compare + " than negative.");
     }
-    public static void employeesOfDepartment(Employee[] array, String departmentName){
+    public static void employeesOfDepartment(Employee[] array, String departmentName) throws ArithmeticException {
+        if (array.length == 0) throw new ArithmeticException("Array is empty!");
         int j = 0;
         for (int i = 0; i < array.length; i++) {
             if (departmentName.equals(array[i].departmentName.toString())){
@@ -115,7 +120,8 @@ public class Employee {
         if (j == 0) System.out.println("Nothing found");
     }
 
-    public static Employee[] arrangeAscending(Employee[] array){
+    public static Employee[] arrangeAscending(Employee[] array) throws ArithmeticException {
+        if (array.length == 0) throw new ArithmeticException("Array is empty!");
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
                 if (array[j].salary > array[j + 1].salary){
@@ -127,7 +133,7 @@ public class Employee {
         }
         return array;
     }
-    public static Employee[] arrangeDescending(Employee[] array){
+    public static Employee[] arrangeDescending(Employee[] array) throws ArithmeticException {
         array = arrangeAscending(array);
         Employee[] array1 = new Employee[array.length];
         for (int i = 0; i < array.length; i++) {
@@ -135,7 +141,8 @@ public class Employee {
         }
         return array1;
     }
-    public static void toString(Employee[] array){
+    public static void toString(Employee[] array) throws ArithmeticException {
+        if (array.length == 0) throw new ArithmeticException("Array is empty!");
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }
@@ -172,34 +179,39 @@ public class Employee {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        Employee[] employees = new Employee[5];
-        employees[0] = new Employee("Ivan", 700, DepartmentName.IT);
-        employees[1] = new Employee("Petro", 400, DepartmentName.FINANCIAL);
-        employees[2] = new Employee("Pavlo", 500, DepartmentName.MARKETING);
-        employees[3] = new Employee("Dmytro", 300, DepartmentName.SALES);
-        employees[4] = new Employee("Mykola", 600, DepartmentName.IT);
+        try {
+            Employee[] employees = new Employee[5];
+            employees[0] = new Employee("Ivan", 700, DepartmentName.IT);
+            employees[1] = new Employee("Petro", 400, DepartmentName.FINANCIAL);
+            employees[2] = new Employee("Pavlo", 500, DepartmentName.MARKETING);
+            employees[3] = new Employee("Dmytro", 300, DepartmentName.SALES);
+            employees[4] = new Employee("Mykola", 600, DepartmentName.IT);
 
-        System.out.println("Input the name of the country: ");
-        System.out.println(Employee.cont(scanner.next()));
+            System.out.println("Input the name of the country: ");
+            System.out.println(Employee.cont(scanner.next()));
 
-        System.out.println("Input ten numbers for array: ");
-        int[] numbers = new int[10];
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = scanner.nextInt();
+            System.out.println("Input ten numbers for array: ");
+            int[] numbers = new int[10];
+            for (int i = 0; i < numbers.length; i++) {
+                numbers[i] = scanner.nextInt();
+            }
+
+            System.out.println("The biggest number is: " + Employee.biggest(numbers));
+
+            System.out.println("The sum of positive values is: " + Employee.sumPoz(numbers));
+
+            Employee.amountPozNeg(numbers);
+
+            System.out.println("Input the department to sort of employees: ");
+            Employee.employeesOfDepartment(employees, scanner.next());
+
+            System.out.println("Arranged workers by the field \"salary\" in the ascending order:");
+            Employee.toString(arrangeAscending(employees));
+            System.out.println("Arranged workers by the field \"salary\" in the descending order:");
+            Employee.toString(arrangeDescending(employees));
+        } catch (ArithmeticException e) {
+            e.printStackTrace();
+            System.err.println(e.getMessage() + "\n");
         }
-
-        System.out.println("The biggest number is: " + Employee.biggest(numbers));
-
-        System.out.println("The sum of positive values is: " + Employee.sumPoz(numbers));
-
-        Employee.amountPozNeg(numbers);
-
-        System.out.println("Input the department to sort of employees: ");
-        Employee.employeesOfDepartment(employees, scanner.next());
-
-        System.out.println("Arranged workers by the field \"salary\" in the ascending order:");
-        Employee.toString(arrangeAscending(employees));
-        System.out.println("Arranged workers by the field \"salary\" in the descending order:");
-        Employee.toString(arrangeDescending(employees));
-}
+    }
 }

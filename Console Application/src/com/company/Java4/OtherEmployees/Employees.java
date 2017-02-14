@@ -5,16 +5,27 @@ package com.company.Java4.OtherEmployees;
  */
 public class Employees {
     public static void main(String[] args) {
-        Employee[] array = new Employee[5];
-        array[0] = new SalariedEmployee("One", "ID000001",10, 160, "ID001");
-        array[1] = new SalariedEmployee("Two", "ID000002",12, 165, "ID002");
-        array[2] = new SalariedEmployee("Three", "ID000003",14, 155, "ID003");
-        array[3] = new ContractEmployee("Four", "ID000004", 2000, "ID004");
-        array[4] = new ContractEmployee("Five", "ID000005", 2500, "ID005");
+        try {
+            Employee[] array = new Employee[5];
+            array[0] = new SalariedEmployee("One", "ID000001",10,
+                    160, "ID001");
+            array[1] = new SalariedEmployee("Two", "ID000002",12,
+                    165, "ID002");
+            array[2] = new SalariedEmployee("Three", "ID000003",14,
+                    155, "ID003");
+            array[3] = new ContractEmployee("Four", "ID000004",
+                    2000, "ID004");
+            array[4] = new ContractEmployee("Five", "ID000005",
+                    2500, "ID005");
 
-        Employees.sortOfDescending(array);
+            Employees.sortOfDescending(array);
+        } catch (ArithmeticException e) {
+            e.printStackTrace();
+            System.err.println(e.getMessage() + "\n");
+        }
     }
-    public static void sortOfDescending(Employee[] array){
+    public static void sortOfDescending(Employee[] array) throws ArithmeticException {
+        if (array.length == 0) throw new ArithmeticException("The array is empty!");
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
                 int salary1 = ((Calculate) array[j]).calculatePay();
