@@ -1,0 +1,22 @@
+Output text «I study Java» 10 times with the intervals of one second (Thread.sleep(1000);).
+Output two messages «Hello, world» and «Peace in the peace» 5 times each with the intervals of 2 seconds, 
+and the second - 3 seconds. After printing messages, print the text «My name is …»
+Prepare mytext.txt file with a lot of text inside.
+Read context from file into array of strings.
+Each array item contains one line from file.
+Complete next tasks:
+   1) count and write the number of symbols in every line.
+   2) find the longest and the shortest line. 
+   3) find and write only that lines, which consist of word «var»
+Run three threads and output there different messages for 5 times. 
+The third thread supposed to start after finishing working of the two previous threads.
+Cause a deadlock. Organize the expectations of ending a thread in main(), and make the end of the method main() in this thread.
+Create a thread «one», which would start the thread «two», 
+which has to output its number («Thread number two») 3 times and create thread «three», 
+which would to output message «Thread number three» 5 times.
+Create file1.txt file with a text about your career.
+Read context from file into array of strings. Each array item contains one line from file.
+Write in to the file2.txt
+   1) number of lines in file1.txt.
+   2) the longest line in file1.txt.
+   3) your name and birthday date. 
