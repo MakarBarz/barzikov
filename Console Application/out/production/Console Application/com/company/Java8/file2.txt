@@ -1,0 +1,3 @@
+Number of lines in file1.txt: 95
+The longest line in file1.txt: I love to read books, play sports (running, swimming, cycling), recreation (travel, hiking, rafting, skydiving), I love playing the guitar, intellectual and board games.
+My name and birthday date: Makar 02.07.1983
